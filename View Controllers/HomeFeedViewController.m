@@ -31,6 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self refreshData];
     // Do any additional setup after loading the view.
 }
 

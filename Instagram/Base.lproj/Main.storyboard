@@ -183,10 +183,10 @@
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Share"/>
+                                <connections>
+                                    <action selector="shareButtonTapped:" destination="MlK-8d-aCc" eventType="touchUpInside" id="S1f-d4-TlC"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <action selector="shareButtonTapped:" destination="MlK-8d-aCc" id="e6c-5P-h5N"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
