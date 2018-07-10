@@ -11,7 +11,9 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 
-@interface HomeFeedViewController () 
+@interface HomeFeedViewController ()
+
+@property (strong, nonatomic) IBOutlet UITableView *postTableView;
 
 @end
 
