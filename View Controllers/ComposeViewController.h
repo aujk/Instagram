@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 @interface ComposeViewController : UIViewController
+
+@property (strong, nonatomic) UIImage *toPostImage;
+
+@property (strong, nonatomic) Post *post;
 
 @end

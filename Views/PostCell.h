@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 @interface PostCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *postImageView;
 @property (weak, nonatomic) IBOutlet UILabel *postLabel;
+
+@property (strong, nonatomic) Post *post; 
 
 @end

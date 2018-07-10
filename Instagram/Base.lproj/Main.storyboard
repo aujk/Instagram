@@ -173,6 +173,9 @@
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="MlK-8d-aCc" eventType="touchUpInside" id="6oJ-De-JGj"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="ukP-UC-uhh">
@@ -181,11 +184,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Share"/>
                             </button>
+                            <connections>
+                                <action selector="shareButtonTapped:" destination="MlK-8d-aCc" id="e6c-5P-h5N"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="toCaptionTextField" destination="MWj-P2-N3R" id="v1f-no-PNw"/>
-                        <outlet property="toPostImageView" destination="E2O-eD-nfC" id="Qp0-9I-oxn"/>
+                        <outlet property="toPostImageView" destination="E2O-eD-nfC" id="WPX-87-cRF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3aU-6t-EYz" userLabel="First Responder" sceneMemberID="firstResponder"/>

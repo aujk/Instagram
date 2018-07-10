@@ -10,10 +10,20 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
+#import "PostCell.h"
+#import "Post.h"
+#import "ComposeViewController.h"
 
 @interface HomeFeedViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView *postTableView;
+
+@property (strong, nonatomic) NSArray *posts;
+
+@property (strong, nonatomic) UIImage *toPostToComposeViewController;
+
+
+// @property (strong, nonatomic) Post *toPost;
 
 @end
 
@@ -80,7 +90,7 @@
     [alert addAction:accessCameraRoll];
     
     [self presentViewController:alert animated:YES completion:^{
-        // optional code for what happens after the alert controller has finished presenting
+        // after finished action
     }];
 }
 
@@ -91,20 +101,62 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     // Do something with the images (based on your use case)
+    self.toPostToComposeViewController = editedImage;
     
     // Dismiss UIImagePickerController to go back to your original view controller
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self performSegueWithIdentifier:@"ComposeController" sender:nil];
+    }];
 }
 
+- (void) refreshData {
 
-/*
+    // construct PFQuery
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+    
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            // do something with the data fetched
+        }
+        else {
+            // handle error
+        }
+    }];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    UINavigationController *navigationController = [segue destinationViewController];
+    
+    if ([navigationController.topViewController isKindOfClass:[ComposeViewController class]]) {
+
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        
+        composeController.toPostImage = self.toPostToComposeViewController;
+    }
 }
-*/
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
+
+    Post *post = self.posts[indexPath.row];
+    
+    cell.post = post;
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.posts.count;
+}
 
 @end

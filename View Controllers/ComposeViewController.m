@@ -7,6 +7,9 @@
 //
 
 #import "ComposeViewController.h"
+#import "AppDelegate.h"
+#import "HomeFeedViewController.h"
+#import "Post.h"
 
 @interface ComposeViewController ()
 
@@ -19,12 +22,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.toPostImageView.image = self.toPostImage;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) createPost {
+    
+}
+
+
+- (IBAction)cancelButtonTapped:(id)sender {
+   
+    ComposeViewController *gotoHomeFeedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeFeedViewController"];
+    [self.navigationController pushViewController:gotoHomeFeedViewController animated:YES];
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (IBAction)shareButtonTapped:(id)sender {
+    
 }
 
 
