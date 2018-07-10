@@ -30,23 +30,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) createPost {
-    
-    [Post postUserImage:self.toPostImageView.image withCaption:self.toCaptionTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"Error posting: %@", error.localizedDescription);
-        }
-        else {
-            NSLog(@"Post posted!");
-            
-            ComposeViewController *gotoHomeFeedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeFeedViewController"];
-            [self.navigationController pushViewController:gotoHomeFeedViewController animated:YES];
-            [self dismissViewControllerAnimated:true completion:nil];
-        }
-    }];
-}
-
-
 - (IBAction)cancelButtonTapped:(id)sender {
    
     ComposeViewController *goToHomeFeedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeFeed"];
@@ -55,12 +38,14 @@
 }
 
 - (IBAction)shareButtonTapped:(id)sender {
+
     [Post postUserImage:self.toPostImageView.image withCaption:self.toCaptionTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (error) {
             NSLog(@"Error posting: %@", error.localizedDescription);
         }
         else {
             NSLog(@"Post posted!");
+            [self.delegate didPost:self.post];
             
             ComposeViewController *goToHomeFeedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeFeed"];
             [self.navigationController pushViewController:goToHomeFeedViewController animated:YES];

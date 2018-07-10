@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *postImageView;
 @property (weak, nonatomic) IBOutlet UILabel *postLabel;
 
-// @property (strong, nonatomic) Post *post; 
+@property (strong, nonatomic) Post *post;
+
+- (void) setPost;
 
 @end

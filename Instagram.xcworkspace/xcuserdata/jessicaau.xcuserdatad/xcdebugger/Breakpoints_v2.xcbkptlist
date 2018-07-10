@@ -19,13 +19,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "View Controllers/ComposeViewController.m"
-            timestampString = "552941864.742391"
+            filePath = "View Controllers/HomeFeedViewController.m"
+            timestampString = "552951951.407212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-shareButtonTapped:"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,29 +35,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "View Controllers/ComposeViewController.m"
-            timestampString = "552941864.7428989"
+            filePath = "Views/PostCell.m"
+            timestampString = "552951951.408058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-shareButtonTapped:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "View Controllers/ComposeViewController.m"
-            timestampString = "552941864.7430969"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "-shareButtonTapped:"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "-setPost"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

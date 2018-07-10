@@ -9,10 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "Post.h"
 
+@protocol ComposeViewControllerDelegate
+
+- (void)didPost:(Post *)post;
+
+@end
+
 @interface ComposeViewController : UIViewController
 
 @property (strong, nonatomic) UIImage *toPostImage;
 
 @property (strong, nonatomic) Post *post;
+
+@property (nonatomic, weak) id<ComposeViewControllerDelegate> delegate;
 
 @end

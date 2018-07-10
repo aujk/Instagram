@@ -84,25 +84,37 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="452" id="SET-76-Ghf" customClass="PostCell">
-                                <rect key="frame" x="0.0" y="28" width="375" height="452"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PostCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="423" id="SET-76-Ghf" customClass="PostCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="423"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SET-76-Ghf" id="JcS-uA-qQF" customClass="PostCell">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="451.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="422.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bOn-LY-RZV">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="760" translatesAutoresizingMaskIntoConstraints="NO" id="bOn-LY-RZV">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="375" id="Yh5-uM-Ume"/>
+                                                <constraint firstAttribute="width" constant="375" id="e3a-sp-CBE"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="Caption" text="This is where the caption goes!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpu-CE-bbf">
-                                            <rect key="frame" x="0.0" y="383" width="375" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="Caption" text="This is where the caption goes!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpu-CE-bbf">
+                                            <rect key="frame" x="0.0" y="380" width="375" height="32.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="wpu-CE-bbf" secondAttribute="bottom" constant="10" id="5je-GP-j5a"/>
+                                        <constraint firstAttribute="trailing" secondItem="wpu-CE-bbf" secondAttribute="trailing" id="Pci-CZ-cTs"/>
+                                        <constraint firstItem="wpu-CE-bbf" firstAttribute="leading" secondItem="JcS-uA-qQF" secondAttribute="leading" id="SPM-Zy-fO5"/>
+                                        <constraint firstItem="bOn-LY-RZV" firstAttribute="top" secondItem="JcS-uA-qQF" secondAttribute="top" id="Yp6-1a-Eh0"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bOn-LY-RZV" secondAttribute="bottom" constant="47.5" id="eUU-O3-S0Y"/>
+                                        <constraint firstItem="bOn-LY-RZV" firstAttribute="leading" secondItem="JcS-uA-qQF" secondAttribute="leading" id="l21-BC-oyS"/>
+                                        <constraint firstItem="wpu-CE-bbf" firstAttribute="top" secondItem="bOn-LY-RZV" secondAttribute="bottom" constant="5" id="l8f-pT-xzI"/>
+                                        <constraint firstAttribute="trailing" secondItem="bOn-LY-RZV" secondAttribute="trailing" id="tug-Pa-ZPu"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="postImageView" destination="bOn-LY-RZV" id="G9y-Vq-yfw"/>

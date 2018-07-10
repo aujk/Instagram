@@ -14,7 +14,7 @@
 #import "Post.h"
 #import "ComposeViewController.h"
 
-@interface HomeFeedViewController ()
+@interface HomeFeedViewController () <ComposeViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *postTableView;
 
@@ -22,17 +22,22 @@
 
 @property (strong, nonatomic) UIImage *toPostToComposeViewController;
 
-
-// @property (strong, nonatomic) Post *toPost;
-
 @end
 
-@implementation HomeFeedViewController
+@implementation HomeFeedViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self refreshData];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.postTableView insertSubview:refreshControl atIndex:0];
+    
+    self.postTableView.dataSource = self;
+    self.postTableView.delegate = self;
+    
+    [self beginRefresh:refreshControl];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -122,11 +127,46 @@
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
-            // do something with the data fetched
+            self.posts = posts;
+            
+            [self.postTableView reloadData];
         }
         else {
-            // handle error
+            NSLog(@"%@", error.localizedDescription);
         }
+        
+        // Reload the tableView now that there is new data
+        [self.postTableView reloadData];
+    }];
+}
+
+
+// Makes a network request to get updated data
+// Makes a   // Updates the tableView with the new data
+// Hides the RefreshControl
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    // construct PFQuery
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+    
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            self.posts = posts;
+            
+            [self.postTableView reloadData];
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        
+        // Reload the tableView now that there is new data
+        [self.postTableView reloadData];
+        
+        // Tell the refreshControl to stop spinning
+        [refreshControl endRefreshing];
     }];
 }
 
@@ -154,11 +194,21 @@
     
     cell.post = post;
     
+    [cell setPost];
+    
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
+}
+
+- (void) didPost:(Post *)post {
+    [self.posts arrayByAddingObject:post];
+    [self.postTableView reloadData];
+    [self refreshData];
+    
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 @end
