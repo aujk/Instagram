@@ -15,13 +15,15 @@
 #import "ComposeViewController.h"
 #import "DetailViewController.h"
 
-@interface HomeFeedViewController () <ComposeViewControllerDelegate>
+@interface HomeFeedViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *postTableView;
 
 @property (strong, nonatomic) NSArray *posts;
 
 @property (strong, nonatomic) UIImage *toPostToComposeViewController;
+
+// @property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
 
@@ -213,8 +215,12 @@
     cell.post = post;
     
     [cell setPost];
-    
+
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -242,6 +248,52 @@
     
     return newImage;
 }
+
+/*
+-(void)loadMoreData{
+    
+    // construct PFQuery
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+    
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            // Update flag
+            self.isMoreDataLoading = false;
+            
+            // ... Use the new data to update the data source ...
+            self.posts = posts;
+            
+            // Reload the tableView now that there is new data
+            [self.postTableView reloadData];
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // Handle scroll behavior here
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.postTableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.postTableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.postTableView.isDragging) {
+            self.isMoreDataLoading = true;
+            
+            // ... Code to load more results ...
+            [self loadMoreData];
+        }
+    }
+}
+
+*/
 
 
 @end

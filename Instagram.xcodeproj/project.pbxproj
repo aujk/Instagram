@@ -20,6 +20,7 @@
 		58073EF320F4321A0082423C /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58073EF220F4321A0082423C /* ComposeViewController.m */; };
 		58073EF920F4366C0082423C /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 58073EF820F4366C0082423C /* Post.m */; };
 		58073EFC20F566170082423C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58073EFB20F566170082423C /* DetailViewController.m */; };
+		58073F0920F6A36E0082423C /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 58073F0820F6A36E0082423C /* Fonts */; };
 		61B70AE4410B19E38BBF70D7 /* libPods-InstagramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB7B112A307328E71A78D2C /* libPods-InstagramTests.a */; };
 		97DED8FFB713E12EE2ABF0BA /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D650701DA0228363244C753 /* libPods-Instagram.a */; };
 		9EA5B3165CC6CC4542E285E3 /* libPods-InstagramUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 202587E12D76EA7C8004F89A /* libPods-InstagramUITests.a */; };
@@ -72,6 +73,7 @@
 		58073EF820F4366C0082423C /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		58073EFA20F566170082423C /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		58073EFB20F566170082423C /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		58073F0820F6A36E0082423C /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		5D650701DA0228363244C753 /* libPods-Instagram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instagram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		727AC2BD25B0478C0DA60C9D /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		752BF617297A991DDCAD9C58 /* Pods-InstagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramUITests/Pods-InstagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		58073E6920F403C30082423C /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				58073F0820F6A36E0082423C /* Fonts */,
 				58073E6A20F403C30082423C /* AppDelegate.h */,
 				58073E6B20F403C30082423C /* AppDelegate.m */,
 				58073E7020F403C30082423C /* Main.storyboard */,
@@ -331,6 +334,7 @@
 				58073E7720F403C50082423C /* LaunchScreen.storyboard in Resources */,
 				58073E7420F403C50082423C /* Assets.xcassets in Resources */,
 				58073E7220F403C30082423C /* Main.storyboard in Resources */,
+				58073F0920F6A36E0082423C /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,10 +362,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Instagram/Pods-Instagram-resources.sh",
+				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Parse.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

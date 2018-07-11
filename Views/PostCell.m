@@ -28,6 +28,7 @@
     [self.postImageView setImageWithURL:postImageURL];
     
     self.postLabel.text = self.post.caption;
+    self.usernameLabel.text = self.post.author.username;
 }
 
 

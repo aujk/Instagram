@@ -8,12 +8,14 @@
 
 #import "DetailViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "DateTools.h"
 
 @interface DetailViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *postImageView;
 @property (weak, nonatomic) IBOutlet UILabel *likesAndCommentsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *postLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end
 
@@ -28,6 +30,8 @@
     self.likesAndCommentsLabel.text = [NSString stringWithFormat:@"%@%@%@%@", self.post.likeCount, @" likes and ", self.post.commentCount, @" comments"];
     self.usernameLabel.text = self.post.author.username;
     self.postLabel.text = self.post.caption;
+    
+    self.dateLabel.text = self.post.date.shortTimeAgoSinceNow;
 }
 
 - (void)didReceiveMemoryWarning {
