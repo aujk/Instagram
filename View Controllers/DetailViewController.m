@@ -35,6 +35,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)backButtonTapped:(id)sender {
+    DetailViewController *goToHomeFeedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeFeed"];
+    [self.navigationController pushViewController:goToHomeFeedViewController animated:YES];
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+
 /*
 #pragma mark - Navigation
 

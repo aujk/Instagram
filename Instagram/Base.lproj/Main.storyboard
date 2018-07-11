@@ -98,9 +98,6 @@
                                                 <constraint firstAttribute="height" constant="375" id="Yh5-uM-Ume"/>
                                                 <constraint firstAttribute="width" constant="375" id="e3a-sp-CBE"/>
                                             </constraints>
-                                            <connections>
-                                                <outletCollection property="gestureRecognizers" destination="OvL-9f-7qn" appends="YES" id="5s2-aL-htq"/>
-                                            </connections>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="Caption" text="This is where the caption goes!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpu-CE-bbf">
                                             <rect key="frame" x="0.0" y="380" width="375" height="32.5"/>
@@ -123,6 +120,7 @@
                                 <connections>
                                     <outlet property="postImageView" destination="bOn-LY-RZV" id="XyX-2j-2NE"/>
                                     <outlet property="postLabel" destination="wpu-CE-bbf" id="i9o-ed-cgK"/>
+                                    <segue destination="lq9-fX-at3" kind="presentation" id="w0p-fV-pH7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -154,15 +152,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="postTableView" destination="q1L-Z2-H6e" id="qgD-JJ-Drm"/>
-                        <segue destination="lq9-fX-at3" kind="presentation" identifier="DetailController" id="eXs-3i-z6N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kwN-fE-qvx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="OvL-9f-7qn">
-                    <connections>
-                        <action selector="imageTapped:" destination="3Wp-ui-ael" id="3KQ-TF-5zq"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2783.1999999999998" y="133.5832083958021"/>
         </scene>
@@ -212,18 +204,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a comment..." textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g9d-Fq-cCj">
-                                <rect key="frame" x="16" y="572" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xj8-Mg-FOd"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Tm9-Fe-AUa"/>
+                    <navigationItem key="navigationItem" id="Tm9-Fe-AUa">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="U6P-CF-6LV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xHw-Fj-BcL">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="B00-9y-p3o" eventType="touchUpInside" id="GRe-xj-0qm"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="backButtonTapped:" destination="B00-9y-p3o" id="9gS-qo-3EQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="likesAndCommentsLabel" destination="yAG-Wp-xXV" id="TD9-Ej-ywT"/>
                         <outlet property="postImageView" destination="wP9-dH-6jb" id="mt4-oA-oGK"/>

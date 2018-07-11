@@ -105,8 +105,12 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    // UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    
+    CGSize imageSize = CGSizeMake(50, 50);
+    
+    editedImage = [self resizeImage:editedImage withSize:imageSize];
     
     // Do something with the images (based on your use case)
     self.toPostToComposeViewController = editedImage;
@@ -225,8 +229,18 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
-- (IBAction)imageTapped:(id)sender {
-    [self performSegueWithIdentifier:@"DetailController" sender:nil];
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 
