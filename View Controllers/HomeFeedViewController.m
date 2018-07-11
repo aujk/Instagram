@@ -13,6 +13,7 @@
 #import "PostCell.h"
 #import "Post.h"
 #import "ComposeViewController.h"
+#import "DetailViewController.h"
 
 @interface HomeFeedViewController () <ComposeViewControllerDelegate>
 
@@ -183,6 +184,19 @@
         
         composeController.toPostImage = self.toPostToComposeViewController;
     }
+    
+    else if ([navigationController.topViewController isKindOfClass:[DetailViewController class]]) {
+        
+        DetailViewController *detailController = (DetailViewController*)navigationController.topViewController;
+        
+        UITableViewCell *tappedCell = sender;
+        
+        NSIndexPath *indexPath = [self.postTableView indexPathForCell:tappedCell];
+        
+        Post *post = self.posts[indexPath.row];
+        
+        detailController.post = post;
+    }
 }
 
 
@@ -210,5 +224,10 @@
     
     [self dismissViewControllerAnimated:true completion:nil];
 }
+
+- (IBAction)imageTapped:(id)sender {
+    [self performSegueWithIdentifier:@"DetailController" sender:nil];
+}
+
 
 @end

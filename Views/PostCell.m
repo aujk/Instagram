@@ -30,4 +30,6 @@
     self.postLabel.text = self.post.caption;
 }
 
+
+
 @end
