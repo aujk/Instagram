@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 @interface ProfileViewController : UIViewController
 
-@property (strong, nonatomic) UIImage *profileImage; 
+@property (strong, nonatomic) UIImage *profileImage;
+
+@property (strong, nonatomic) PFUser *user;
 
 @end

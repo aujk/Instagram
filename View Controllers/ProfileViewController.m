@@ -8,24 +8,31 @@
 
 #import "ProfileViewController.h"
 #import "Post.h"
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @interface ProfileViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 
 @end
 
 @implementation ProfileViewController
 
 - (void)viewDidLoad {
+    self.user = [PFUser currentUser];
+
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.profileImageView.image = self.profileImage;
+    if (self.profileImage == nil) {
+        self.profileImageView.image = [UIImage imageNamed: @"profile-image-blank"];
+    }
+    else {
+        [self setProfilePicture];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)profileImageTapped:(id)sender {
@@ -72,24 +79,20 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    
-    // Get the image captured by the UIImagePickerController
-    // UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
-    CGSize imageSize = CGSizeMake(50, 50);
+    CGSize imageSize = CGSizeMake(100, 100);
     
     editedImage = [self resizeImage:editedImage withSize:imageSize];
     
-    // Do something with the images (based on your use case)
     self.profileImage = editedImage;
-    self.profileImageView.image = self.profileImage;
     
-    self.post.user[@"profileimage"] = [Post getPFFileFromImage:editedImage];
+    [self setProfilePicture];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:^{
-      //  [self performSegueWithIdentifier:@"ComposeController" sender:nil];
+      //  --
     }];
 }
 
@@ -105,6 +108,17 @@
     UIGraphicsEndImageContext();
     
     return newImage;
+}
+
+- (void) setProfilePicture {
+    self.user[@"profileImage"] = [Post getPFFileFromImage:self.profileImage];
+    [self.user saveInBackground];
+
+    self.profileImageView = self.user[@"profileImage"];
+    [self.user fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        //
+    }];
+     //   self.profileImageView.image = self.user[@"profileImage"];
 }
 
 

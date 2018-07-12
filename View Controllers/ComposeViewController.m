@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "HomeFeedViewController.h"
 #import "Post.h"
+#import "SVProgressHUD.h"
 
 @interface ComposeViewController ()
 
@@ -39,6 +40,8 @@
 
 - (IBAction)shareButtonTapped:(id)sender {
 
+    [SVProgressHUD show];
+
     [Post postUserImage:self.toPostImageView.image withCaption:self.toCaptionTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (error) {
             NSLog(@"Error posting: %@", error.localizedDescription);
@@ -51,6 +54,7 @@
             [self.navigationController pushViewController:goToHomeFeedViewController animated:YES];
             [self dismissViewControllerAnimated:true completion:nil];
         }
+        [SVProgressHUD dismiss];
     }];
 }
 

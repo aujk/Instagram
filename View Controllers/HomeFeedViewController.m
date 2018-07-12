@@ -14,6 +14,7 @@
 #import "Post.h"
 #import "ComposeViewController.h"
 #import "DetailViewController.h"
+#import "SVProgressHUD.h"
 // #import "UIScrollView+SVInfiniteScrolling.h"
 
 @interface HomeFeedViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, UIScrollViewDelegate>
@@ -161,6 +162,8 @@
 // Makes a   // Updates the tableView with the new data
 // Hides the RefreshControl
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    [SVProgressHUD show];
+
     // construct PFQuery
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
@@ -183,6 +186,7 @@
         
         // Tell the refreshControl to stop spinning
         [refreshControl endRefreshing];
+        [SVProgressHUD dismiss];
     }];
 }
 
@@ -228,10 +232,6 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
 }
@@ -256,6 +256,10 @@
     UIGraphicsEndImageContext();
     
     return newImage;
+}
+
+- (IBAction)profileDidTap:(id)sender {
+    NSLog(@"Tapped to segue into profile");
 }
 
 /*

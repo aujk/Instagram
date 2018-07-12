@@ -31,6 +31,23 @@
     self.usernameLabel.text = self.post.author.username;
 }
 
+- (IBAction)likeButtonTapped:(id)sender {
+    int likeCount = [self.post.likeCount intValue];
+    
+    if (!self.userDidLike) {
+        likeCount++;
+        self.post.likeCount = [NSNumber numberWithInt:likeCount];
+        
+    }
+    else if (self.userDidLike) {
+        likeCount--;
+        self.post.likeCount = [NSNumber numberWithInt:likeCount];
+    }
+}
+
+
+
+
 
 
 @end

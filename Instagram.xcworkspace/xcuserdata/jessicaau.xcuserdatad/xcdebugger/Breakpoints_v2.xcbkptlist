@@ -16,16 +16,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "View Controllers/DetailViewController.m"
-            timestampString = "553043767.140317"
+            filePath = "View Controllers/ProfileViewController.m"
+            timestampString = "553120681.641711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "-setProfilePicture"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

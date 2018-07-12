@@ -31,7 +31,7 @@
     self.usernameLabel.text = self.post.author.username;
     self.postLabel.text = self.post.caption;
     
-    self.dateLabel.text = self.post.date.shortTimeAgoSinceNow;
+    self.dateLabel.text = self.post.createdAt.shortTimeAgoSinceNow;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,7 +42,7 @@
 - (IBAction)backButtonTapped:(id)sender {
     DetailViewController *goToHomeFeedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeFeed"];
     [self.navigationController pushViewController:goToHomeFeedViewController animated:YES];
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self dismissViewControllerAnimated:false completion:nil];
 }
 
 

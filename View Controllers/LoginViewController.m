@@ -58,7 +58,7 @@
         } else {
             NSLog(@"User registered successfully");
             
-            [self performSegueWithIdentifier:@"HomeFeedController" sender:nil];
+            [self performSegueWithIdentifier:@"TabBarControl" sender:nil];
 
             // manually segue to logged in view
         }
@@ -75,7 +75,7 @@
         } else {
             NSLog(@"User logged in successfully");
             
-            [self performSegueWithIdentifier:@"HomeFeedController" sender:nil];
+            [self performSegueWithIdentifier:@"TabBarControl" sender:nil];
 
             // display view controller that needs to shown after successful login
         }
