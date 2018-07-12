@@ -14,6 +14,7 @@
 #import "Post.h"
 #import "ComposeViewController.h"
 #import "DetailViewController.h"
+// #import "UIScrollView+SVInfiniteScrolling.h"
 
 @interface HomeFeedViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, UIScrollViewDelegate>
 
@@ -41,7 +42,15 @@
     
     [self beginRefresh:refreshControl];
     
-    // Do any additional setup after loading the view.
+    /*
+    [self.postTableView addInfiniteScrollingWithActionHandler:^{
+        // append data to data source, insert new cells at the end of table view
+        
+        
+    }];
+    
+    [self.postTableView.infiniteScrollingView stopAnimating];
+     */
 }
 
 - (void)didReceiveMemoryWarning {
@@ -110,7 +119,7 @@
     // UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
-    CGSize imageSize = CGSizeMake(50, 50);
+    CGSize imageSize = CGSizeMake(500, 500);
     
     editedImage = [self resizeImage:editedImage withSize:imageSize];
     
