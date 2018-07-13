@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UICollectionView *postsCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *numberPostsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numberFollowersLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numberFollowingLabel;
 
 @property (strong, nonatomic) NSArray *posts;
 
@@ -32,11 +34,19 @@
     
     self.user = [PFUser currentUser];
     
-    if (self.profileImage == nil) {
+    int followers = arc4random() % 500;
+    int following = arc4random() % 500;
+
+    self.numberFollowersLabel.text = [NSString stringWithFormat:@"%d", followers];
+    self.numberFollowingLabel.text = [NSString stringWithFormat:@"%d", following];
+    
+    
+    if (self.user[@"profileImage"] == [NSNull null]) {
         self.profileImageView.image = [UIImage imageNamed: @"profile-image-blank"];
     }
     else {
-        [self setProfilePicture];
+    self.profileImageView.file = self.user[@"profileImage"];
+    [self.profileImageView loadInBackground];
     }
     
     [self getUserPosts];

@@ -450,6 +450,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="PSx-lD-pPN"/>
                     <connections>
+                        <outlet property="numberFollowersLabel" destination="8eL-pn-pZ8" id="gPo-8D-HME"/>
+                        <outlet property="numberFollowingLabel" destination="WK3-L0-Blu" id="42L-o8-3i8"/>
                         <outlet property="numberPostsLabel" destination="fQM-VJ-5rt" id="INx-nB-vyG"/>
                         <outlet property="postsCollectionView" destination="ZuB-8r-5fn" id="mmD-Av-CfT"/>
                         <outlet property="profileImageView" destination="44p-nC-ZsZ" id="zta-sZ-Smf"/>
