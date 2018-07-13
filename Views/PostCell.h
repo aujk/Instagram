@@ -14,10 +14,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *postImageView;
 @property (weak, nonatomic) IBOutlet UILabel *postLabel;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 @property (strong, nonatomic) Post *post;
 
-@property (strong, nonatomic) Boolean *userDidLike = NO;
+@property (assign, nonatomic) BOOL userDidLike; 
 
 - (void) setPost;
 

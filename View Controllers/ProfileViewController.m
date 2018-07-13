@@ -10,25 +10,46 @@
 #import "Post.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import "PostCollectionViewCell.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UICollectionView *postsCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *numberPostsLabel;
+
+@property (strong, nonatomic) NSArray *posts;
 
 @end
 
 @implementation ProfileViewController
 
 - (void)viewDidLoad {
-    self.user = [PFUser currentUser];
-
     [super viewDidLoad];
+    
+    self.postsCollectionView.delegate = self;
+    self.postsCollectionView.dataSource = self;
+    
+    self.user = [PFUser currentUser];
+    
     if (self.profileImage == nil) {
         self.profileImageView.image = [UIImage imageNamed: @"profile-image-blank"];
     }
     else {
         [self setProfilePicture];
     }
+    
+    [self getUserPosts];
+    
+    UICollectionViewFlowLayout *layout =  (UICollectionViewFlowLayout*)self.postsCollectionView.collectionViewLayout;
+    
+    layout.minimumInteritemSpacing = 5;
+    layout.minimumLineSpacing = 5;
+    
+    CGFloat postsPerLine = 3;
+    CGFloat itemWidth = (self.postsCollectionView.frame.size.width - layout.minimumInteritemSpacing * (postsPerLine - 1)) / postsPerLine;
+    CGFloat itemHeight = itemWidth;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,6 +109,8 @@
     
     self.profileImage = editedImage;
     
+  //  self.profileImageView.image = editedImage;
+    
     [self setProfilePicture];
     
     // Dismiss UIImagePickerController to go back to your original view controller
@@ -112,15 +135,54 @@
 
 - (void) setProfilePicture {
     self.user[@"profileImage"] = [Post getPFFileFromImage:self.profileImage];
-    [self.user saveInBackground];
 
-    self.profileImageView = self.user[@"profileImage"];
-    [self.user fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        //
+    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        self.profileImageView.file = self.user[@"profileImage"];
+        [self.profileImageView loadInBackground];
     }];
-     //   self.profileImageView.image = self.user[@"profileImage"];
 }
 
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    PostCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostCollectionViewCell" forIndexPath:indexPath];
+
+    Post *post = self.posts[indexPath.item];
+    
+    cell.post = post;
+    
+    [cell setPost];
+    
+    return cell; 
+}
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.posts.count;
+}
+
+- (void) getUserPosts {
+
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    [postQuery whereKey:@"author" equalTo:PFUser.currentUser];
+    postQuery.limit = 20;
+    
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            self.posts = posts;
+            
+            [self.postsCollectionView reloadData];
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        
+        // Reload the tableView now that there is new data
+        [self.postsCollectionView reloadData];
+        
+        self.numberPostsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.posts.count];
+    }];
+}
 
 /*
 #pragma mark - Navigation

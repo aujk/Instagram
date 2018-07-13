@@ -134,6 +134,8 @@
 }
 
 - (void) refreshData {
+    
+    [SVProgressHUD show];
 
     // construct PFQuery
     PFQuery *postQuery = [Post query];
@@ -154,6 +156,7 @@
         
         // Reload the tableView now that there is new data
         [self.postTableView reloadData];
+        [SVProgressHUD dismiss];
     }];
 }
 
@@ -162,7 +165,6 @@
 // Makes a   // Updates the tableView with the new data
 // Hides the RefreshControl
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
-    [SVProgressHUD show];
 
     // construct PFQuery
     PFQuery *postQuery = [Post query];
@@ -186,7 +188,6 @@
         
         // Tell the refreshControl to stop spinning
         [refreshControl endRefreshing];
-        [SVProgressHUD dismiss];
     }];
 }
 

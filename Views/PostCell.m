@@ -37,11 +37,14 @@
     if (!self.userDidLike) {
         likeCount++;
         self.post.likeCount = [NSNumber numberWithInt:likeCount];
-        
+        [self.likeButton setImage:[UIImage imageNamed: @"like-icon-red"] forState:UIControlStateNormal];
+        self.userDidLike = YES;
     }
     else if (self.userDidLike) {
         likeCount--;
         self.post.likeCount = [NSNumber numberWithInt:likeCount];
+        [self.likeButton setImage:[UIImage imageNamed: @"like-icon"] forState:UIControlStateNormal];
+        self.userDidLike = NO;
     }
 }
 

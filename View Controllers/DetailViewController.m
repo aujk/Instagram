@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *postLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UITableView *commentTableView;
 
 @end
 
@@ -44,6 +45,8 @@
     [self.navigationController pushViewController:goToHomeFeedViewController animated:YES];
     [self dismissViewControllerAnimated:false completion:nil];
 }
+
+
 
 
 /*

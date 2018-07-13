@@ -18,6 +18,7 @@
 @dynamic likeCount;
 @dynamic commentCount;
 @dynamic date;
+@dynamic comments; 
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -31,6 +32,7 @@
     newPost.caption = caption;
     newPost.likeCount = @(0);
     newPost.commentCount = @(0);
+    newPost.comments = [NSMutableArray array];
     
     [newPost saveInBackgroundWithBlock: completion];
 }
