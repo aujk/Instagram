@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberPostsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberFollowersLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberFollowingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 
 @property (strong, nonatomic) NSArray *posts;
 
@@ -40,13 +41,14 @@
     self.numberFollowersLabel.text = [NSString stringWithFormat:@"%d", followers];
     self.numberFollowingLabel.text = [NSString stringWithFormat:@"%d", following];
     
+    self.usernameLabel.text = self.user.username;
     
     if (self.user[@"profileImage"] == [NSNull null]) {
         self.profileImageView.image = [UIImage imageNamed: @"profile-image-blank"];
     }
     else {
-    self.profileImageView.file = self.user[@"profileImage"];
-    [self.profileImageView loadInBackground];
+        self.profileImageView.file = self.user[@"profileImage"];
+        [self.profileImageView loadInBackground];
     }
     
     [self getUserPosts];
@@ -113,7 +115,7 @@
 
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
-    CGSize imageSize = CGSizeMake(100, 100);
+    CGSize imageSize = CGSizeMake(200, 200);
     
     editedImage = [self resizeImage:editedImage withSize:imageSize];
     

@@ -8,6 +8,9 @@
 
 #import "PostCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "AFNetworking.h"
+#import <ParseUI/ParseUI.h>
+#import "DateTools.h"
 
 @implementation PostCell
 
@@ -29,6 +32,10 @@
     
     self.postLabel.text = self.post.caption;
     self.usernameLabel.text = self.post.author.username;
+    
+    self.profileImageView.file = self.post.author[@"profileImage"];
+    self.locationLabel.text = self.post.location;
+    self.dateLabel.text = self.post.createdAt.shortTimeAgoSinceNow;
 }
 
 - (IBAction)likeButtonTapped:(id)sender {
@@ -48,6 +55,9 @@
     }
 }
 
+- (IBAction)profileImageButtonTapped:(id)sender {
+    //
+}
 
 
 

@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *toPostImageView;
 @property (weak, nonatomic) IBOutlet UITextField *toCaptionTextField;
+@property (weak, nonatomic) IBOutlet UITextField *locationTextField;
 
 @end
 
@@ -42,7 +43,7 @@
 
     [SVProgressHUD show];
 
-    [Post postUserImage:self.toPostImageView.image withCaption:self.toCaptionTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [Post postUserImage:self.toPostImage withCaption:self.toCaptionTextField.text withLocation:self.locationTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (error) {
             NSLog(@"Error posting: %@", error.localizedDescription);
         }

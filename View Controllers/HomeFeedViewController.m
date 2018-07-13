@@ -120,7 +120,7 @@
     // UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
-    CGSize imageSize = CGSizeMake(500, 500);
+    CGSize imageSize = CGSizeMake(600, 600);
     
     editedImage = [self resizeImage:editedImage withSize:imageSize];
     
