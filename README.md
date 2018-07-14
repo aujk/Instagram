@@ -41,6 +41,7 @@ The following **additional** features are implemented:
 - [X] Circular profile images
 - [X] Added post count on profile as well as follower and following number (initialized with random integers) 
 - [x] User can tap on post in profile to view detail view 
+- [x] Username shows up at the top of profile view controller 
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
